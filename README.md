@@ -15,14 +15,9 @@ Install the base dependency:
 apt install bubblewrap
 ```
 
-Install Node.js 22:
+Choose one Codex installation method:
 
-```bash
-curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
-apt-get install -y nodejs
-```
-
-Install the Codex binary:
+### Option 1: Install the Codex binary
 
 ```bash
 curl -fsSL https://github.com/openai/codex/releases/latest/download/codex-linux-x64.tar.gz -o /tmp/codex.tgz
@@ -30,7 +25,7 @@ tar -xzf /tmp/codex.tgz -C /usr/local/bin
 mv /usr/local/bin/codex-x86_64-unknown-linux-musl /usr/local/bin/codex 2>/dev/null || true
 ```
 
-Install Codex through npm:
+### Option 2: Install Codex through npm
 
 ```bash
 curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
