@@ -1,6 +1,6 @@
 # runpod-setup
 
-Setup notes for preparing a RunPod environment with Codex, Node.js, custom Codex settings, and Google Drive access through `rclone`.
+Setup notes for preparing a RunPod environment with Codex, Node.js, custom Codex settings, Google Drive access through `rclone`, `uv`, and LaTeX.
 
 ## Contents
 
@@ -9,13 +9,15 @@ Setup notes for preparing a RunPod environment with Codex, Node.js, custom Codex
 
 ## Codex Setup
 
-Install the base dependency:
+Install the base dependencies:
 
 ```bash
 apt install bubblewrap
+curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
+apt-get install -y nodejs
 ```
 
-Choose one Codex installation method:
+Then choose one Codex installation method.
 
 ### Option 1: Install the Codex binary
 
@@ -28,8 +30,6 @@ mv /usr/local/bin/codex-x86_64-unknown-linux-musl /usr/local/bin/codex 2>/dev/nu
 ### Option 2: Install Codex through npm
 
 ```bash
-curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
-apt-get install -y nodejs
 npm install -g @openai/codex@latest
 ```
 
@@ -73,4 +73,24 @@ n
 Enter
 Enter
 q
+```
+
+## uv Setup
+
+Install `uv`:
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+## LaTeX Setup
+
+Install TeX Live non-interactively:
+
+```bash
+cd /tmp
+curl -L -o install-tl-unx.tar.gz https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+zcat < install-tl-unx.tar.gz | tar xf -
+cd install-tl-2*
+perl ./install-tl --no-interaction --paper=letter
 ```

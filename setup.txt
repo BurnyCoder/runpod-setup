@@ -1,5 +1,7 @@
 # Codex
 apt install bubblewrap
+curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
+apt-get install -y nodejs
 
 # Option 1: install the Codex binary
 curl -fsSL https://github.com/openai/codex/releases/latest/download/codex-linux-x64.tar.gz -o /tmp/codex.tgz
@@ -7,8 +9,6 @@ tar -xzf /tmp/codex.tgz -C /usr/local/bin
 mv /usr/local/bin/codex-x86_64-unknown-linux-musl /usr/local/bin/codex 2>/dev/null || true
 
 # Option 2: install Codex through npm
-curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
-apt-get install -y nodejs
 npm install -g @openai/codex@latest
 
 codex
@@ -30,3 +30,13 @@ n
 Enter
 Enter
 q
+
+# uv
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# LaTeX
+cd /tmp
+curl -L -o install-tl-unx.tar.gz https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+zcat < install-tl-unx.tar.gz | tar xf -
+cd install-tl-2*
+perl ./install-tl --no-interaction --paper=letter
