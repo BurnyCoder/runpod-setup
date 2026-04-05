@@ -105,3 +105,21 @@ perl ./install-tl --no-interaction --paper=letter --scheme=small --no-doc-instal
 export PATH="/usr/local/texlive/2026/bin/x86_64-linux:$PATH"
 tlmgr install latexmk biber
 ```
+
+## Additional Codex Setup
+
+Install PDF tooling used by Codex:
+
+```bash
+apt install poppler-utils
+pip install pdftotext
+```
+
+Then initialize the project instructions:
+
+```bash
+codex
+/init
+```
+
+Add more of the repository structure and README information into `AGENTS.md`.

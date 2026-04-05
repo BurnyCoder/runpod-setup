@@ -47,3 +47,11 @@ cd install-tl-2*
 perl ./install-tl --no-interaction --paper=letter --scheme=small --no-doc-install --no-src-install
 export PATH="/usr/local/texlive/2026/bin/x86_64-linux:$PATH"
 tlmgr install latexmk biber
+
+# For Codex
+apt install poppler-utils
+pip install pdftotext
+
+codex
+/init
+Add more of the structure of the repo and information from README into AGENTS.md
