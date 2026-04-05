@@ -1,6 +1,6 @@
 # runpod-setup
 
-Setup notes for preparing a RunPod environment with Git, Codex, Node.js, custom Codex settings, Google Drive access through `rclone`, `uv`, and LaTeX.
+Setup notes for preparing a RunPod environment with Git, GitHub CLI, Codex, Node.js, custom Codex settings, Google Drive access through `rclone`, `uv`, and LaTeX.
 
 ## Contents
 
@@ -14,6 +14,14 @@ Set up SSH agent forwarding in the IDE, then configure the global Git identity:
 ```bash
 git config --global user.name "BurnyCoder"
 git config --global user.email "happymancz@email.cz"
+```
+
+## GitHub CLI Setup
+
+Authenticate GitHub CLI:
+
+```bash
+gh auth login
 ```
 
 ## Codex Setup
@@ -111,7 +119,7 @@ tlmgr install latexmk biber
 Install PDF tooling used by Codex:
 
 ```bash
-apt install poppler-utils
+apt-get install -y build-essential libpoppler-cpp-dev pkg-config python3-dev
 pip install pdftotext
 ```
 

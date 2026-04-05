@@ -3,6 +3,9 @@
 git config --global user.name "BurnyCoder"
 git config --global user.email "happymancz@email.cz"
 
+# Gh
+gh auth login
+
 # Codex
 apt install bubblewrap
 curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
@@ -49,7 +52,7 @@ export PATH="/usr/local/texlive/2026/bin/x86_64-linux:$PATH"
 tlmgr install latexmk biber
 
 # For Codex
-apt install poppler-utils
+apt-get install -y build-essential libpoppler-cpp-dev pkg-config python3-dev
 pip install pdftotext
 
 codex
