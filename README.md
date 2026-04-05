@@ -1,11 +1,20 @@
 # runpod-setup
 
-Setup notes for preparing a RunPod environment with Codex, Node.js, custom Codex settings, Google Drive access through `rclone`, `uv`, and LaTeX.
+Setup notes for preparing a RunPod environment with Git, Codex, Node.js, custom Codex settings, Google Drive access through `rclone`, `uv`, and LaTeX.
 
 ## Contents
 
 - `setup.txt`: the original command checklist
 - `README.md`: cleaned up setup instructions
+
+## Git Setup
+
+Set up SSH agent forwarding in the IDE, then configure the global Git identity:
+
+```bash
+git config --global user.name "BurnyCoder"
+git config --global user.email "happymancz@email.cz"
+```
 
 ## Codex Setup
 
