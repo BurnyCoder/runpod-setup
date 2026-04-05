@@ -7,6 +7,14 @@ Setup notes for preparing a RunPod environment with Git, GitHub CLI, Codex, Node
 - `setup.txt`: the original command checklist
 - `README.md`: cleaned up setup instructions
 
+## RunPod Setup
+
+Before the rest of the environment setup:
+
+- deploy the RunPod instance
+- connect to the IDE
+- attach a 200 GB network volume
+
 ## Git Setup
 
 Set up SSH agent forwarding in the IDE, then configure the global Git identity:
@@ -102,6 +110,8 @@ Install `uv`:
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
+
+Then set up a working Python `uv` virtual environment with the required dependencies.
 
 ## LaTeX Setup
 

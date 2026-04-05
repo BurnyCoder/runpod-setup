@@ -1,3 +1,7 @@
+runpod deploy
+connect to ide
+200 gb network volume
+
 # Git
 # Setup SSH Agent Forwarding on IDE
 git config --global user.name "BurnyCoder"
@@ -58,3 +62,5 @@ tlmgr install latexmk biber
 codex
 /init
 Add more of the structure of the repo and information from README into AGENTS.md
+
+Setup working python uv venv with dependencies
