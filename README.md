@@ -85,12 +85,13 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 ## LaTeX Setup
 
-Install TeX Live non-interactively:
+Install TeX Live non-interactively with a smaller scheme, then add `latexmk` and `biber`:
 
 ```bash
 cd /tmp
 curl -L -o install-tl-unx.tar.gz https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 zcat < install-tl-unx.tar.gz | tar xf -
 cd install-tl-2*
-perl ./install-tl --no-interaction --paper=letter
+perl ./install-tl --no-interaction --paper=letter --scheme=small --no-doc-install --no-src-install
+tlmgr install latexmk biber
 ```
