@@ -9,7 +9,7 @@ gh auth login
 # Codex
 apt install bubblewrap
 apt-get install -y build-essential libpoppler-cpp-dev pkg-config python3-dev
-pip install pdftotext
+pip install pdftotext pytest
 apt-get install ripgrep
 curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
 apt-get install -y nodejs
