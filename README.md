@@ -30,6 +30,9 @@ Install the base dependencies:
 
 ```bash
 apt install bubblewrap
+apt-get install -y build-essential libpoppler-cpp-dev pkg-config python3-dev
+pip install pdftotext
+apt-get install ripgrep
 curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
 apt-get install -y nodejs
 ```
@@ -114,16 +117,9 @@ export PATH="/usr/local/texlive/2026/bin/x86_64-linux:$PATH"
 tlmgr install latexmk biber
 ```
 
-## Additional Codex Setup
+## Setup Codex
 
-Install PDF tooling used by Codex:
-
-```bash
-apt-get install -y build-essential libpoppler-cpp-dev pkg-config python3-dev
-pip install pdftotext
-```
-
-Then initialize the project instructions:
+Initialize the project instructions:
 
 ```bash
 codex

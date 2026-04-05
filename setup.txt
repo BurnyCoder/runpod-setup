@@ -8,6 +8,9 @@ gh auth login
 
 # Codex
 apt install bubblewrap
+apt-get install -y build-essential libpoppler-cpp-dev pkg-config python3-dev
+pip install pdftotext
+apt-get install ripgrep
 curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
 apt-get install -y nodejs
 
@@ -51,10 +54,7 @@ perl ./install-tl --no-interaction --paper=letter --scheme=small --no-doc-instal
 export PATH="/usr/local/texlive/2026/bin/x86_64-linux:$PATH"
 tlmgr install latexmk biber
 
-# For Codex
-apt-get install -y build-essential libpoppler-cpp-dev pkg-config python3-dev
-pip install pdftotext
-
+# Setup Codex
 codex
 /init
 Add more of the structure of the repo and information from README into AGENTS.md
