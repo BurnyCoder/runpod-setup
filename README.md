@@ -26,7 +26,7 @@ gh auth login
 
 ## Codex Setup
 
-Install the base dependencies:
+Install the base dependencies and tools Codex commonly finds useful:
 
 ```bash
 apt install bubblewrap
