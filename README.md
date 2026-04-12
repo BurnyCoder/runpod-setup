@@ -153,6 +153,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
 Then set up a working Python `uv` virtual environment with the required dependencies.
+If the Python version you need is missing, install it first.
 
 ## LaTeX Setup
 

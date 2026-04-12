@@ -107,4 +107,4 @@ codex
 /init
 Add more of the structure of the repo and information from README into AGENTS.md
 
-# Setup working python uv venv with dependencies
+# Setup working python uv venv with dependencies, if youre missing python version just install it
