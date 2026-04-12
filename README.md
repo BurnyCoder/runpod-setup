@@ -26,10 +26,25 @@ git config --global user.email "happymancz@email.cz"
 
 ## GitHub CLI Setup
 
-Authenticate GitHub CLI:
+Install GitHub CLI:
 
 ```bash
-gh auth login
+(type -p wget >/dev/null || (apt update && apt install wget -y)) \
+  && mkdir -p -m 755 /etc/apt/keyrings \
+  && out=$(mktemp) && wget -nv -O"$out" https://cli.github.com/packages/githubcli-archive-keyring.gpg \
+  && cat "$out" | tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null \
+  && chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \
+  && mkdir -p -m 755 /etc/apt/sources.list.d \
+  && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+  && apt update \
+  && apt install gh -y
+```
+
+Export a GitHub token for shell sessions:
+
+```bash
+echo 'export GH_TOKEN="ghp_your_token_here"' >> ~/.bashrc
+source ~/.bashrc
 ```
 
 ## Codex Setup
@@ -43,64 +58,90 @@ pip install pdftotext pytest
 apt-get install ripgrep
 curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
 apt-get install -y nodejs
-```
-
-Then choose one Codex installation method.
-
-### Option 1: Install the Codex binary
-
-```bash
-curl -fsSL https://github.com/openai/codex/releases/latest/download/codex-linux-x64.tar.gz -o /tmp/codex.tgz
-tar -xzf /tmp/codex.tgz -C /usr/local/bin
-mv /usr/local/bin/codex-x86_64-unknown-linux-musl /usr/local/bin/codex 2>/dev/null || true
-```
-
-### Option 2: Install Codex through npm
-
-```bash
 npm install -g @openai/codex@latest
 ```
 
-Start Codex:
+Apply the Codex configuration based on `https://github.com/BurnyCoder/codex-settings`:
 
 ```bash
-codex
+mkdir -p /root/.codex/rules /root/.codex/backups
+
+if [ -f /root/.codex/config.toml ]; then
+  cp /root/.codex/config.toml "/root/.codex/backups/config.toml.pre-burnycoder-$(date +%Y%m%d-%H%M%S)"
+fi
+
+cat > /root/.codex/config.toml <<'EOF'
+model = "gpt-5.4"
+model_reasoning_effort = "xhigh"
+approval_policy = "never"
+sandbox_mode = "danger-full-access"
+
+[features]
+multi_agent = true
+
+[plugins."github@openai-curated"]
+enabled = true
+
+[projects."/workspace/physics-foundation-model-activation-steering"]
+trust_level = "trusted"
+
+[projects."/root"]
+trust_level = "trusted"
+EOF
+
+cat > /root/.codex/rules/default.rules <<'EOF'
+# Block direct rm invocations, even when commands otherwise auto-run.
+prefix_rule(
+    pattern = ["rm"],
+    decision = "forbidden",
+    justification = "Do not use rm. Remove files manually after review or use a safer alternative.",
+    match = [
+        "rm file.txt",
+        "rm -rf build",
+    ],
+    not_match = [
+        "rmdir empty-dir",
+    ],
+)
+
+prefix_rule(
+    pattern = ["/bin/rm"],
+    decision = "forbidden",
+    justification = "Do not use rm. Remove files manually after review or use a safer alternative.",
+    match = [
+        "/bin/rm file.txt",
+        "/bin/rm -rf build",
+    ],
+)
+
+prefix_rule(
+    pattern = ["sudo", "rm"],
+    decision = "forbidden",
+    justification = "Do not use rm. Remove files manually after review or use a safer alternative.",
+    match = [
+        "sudo rm file.txt",
+        "sudo rm -rf build",
+    ],
+)
+
+prefix_rule(
+    pattern = ["sudo", "/bin/rm"],
+    decision = "forbidden",
+    justification = "Do not use rm. Remove files manually after review or use a safer alternative.",
+    match = [
+        "sudo /bin/rm file.txt",
+        "sudo /bin/rm -rf build",
+    ],
+)
+EOF
 ```
-
-Use these Codex settings:
-
-`https://github.com/BurnyCoder/codex-settings`
 
 ## Google Drive Setup
 
-Install `rclone`:
+Install `rclone` and create a Google Drive remote:
 
 ```bash
-apt-get install -y unzip
-curl https://rclone.org/install.sh | bash
-```
-
-Run the interactive setup:
-
-```bash
-rclone config
-```
-
-Use the following sequence in the prompts:
-
-```text
-n
-gdrive
-24
-Enter
-Enter
-1
-Enter
-Enter
-n
-Enter
-Enter
-q
+apt-get install -y unzip && curl https://rclone.org/install.sh | bash && rclone config create googledrive drive scope=drive
 ```
 
 ## uv Setup
