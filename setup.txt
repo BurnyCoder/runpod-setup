@@ -31,7 +31,7 @@ npm install -g @openai/codex@latest
 # Use these codex settings https://github.com/BurnyCoder/codex-settings
 mkdir -p /root/.codex/rules /root/.codex/backups && { [ -f /root/.codex/config.toml ]
   && cp /root/.codex/config.toml "/root/.codex/backups/config.toml.pre-burnycoder-$(date
-  +%Y%m%d-%H%M%S)" || true; } && printf '%s\n' 'model = "gpt-5.4"'
+  +%Y%m%d-%H%M%S)" || true; } && printf '%s\n' 'model = "gpt-5.5"'
   'model_reasoning_effort = "xhigh"' 'approval_policy = "never"' 'sandbox_mode = "danger-
   full-access"' '' '[features]' 'multi_agent = true' '' '[plugins."github@openai-
   curated"]' 'enabled = true' '' '[projects."/workspace/physics-foundation-model-
