@@ -71,7 +71,7 @@ if [ -f /root/.codex/config.toml ]; then
 fi
 
 cat > /root/.codex/config.toml <<'EOF'
-model = "gpt-5.4"
+model = "gpt-5.5"
 model_reasoning_effort = "xhigh"
 approval_policy = "never"
 sandbox_mode = "danger-full-access"
